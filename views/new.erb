@@ -5,6 +5,22 @@
   <title>New memo</title>
 </head>
 <body>
-  <h1>New memo</h1>
+  <h1>メモアプリ</h1>
+  <form action="../memo" method="post">
+    <div>
+      <label for="title">タイトル</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+      <label for="body">内容</label>
+      <textarea id="body" name="body" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <input type="submit" value="保存">
+    </div>
+  </form>
+  <div>
+    <input type="button" onclick="location.href='/memo'" value="戻る">
+  </div>
 </body>
 </html>

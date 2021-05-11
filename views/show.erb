@@ -5,6 +5,26 @@
   <title>Show memo</title>
 </head>
 <body>
-  <h1>Show memo</h1>
+  <h1>メモアプリ</h1>
+  <div>
+    タイトル<br>
+    <%= @title %>
+  </div>
+  <div>
+    内容<br>
+    <%= @body %>
+  </div>
+  <div>
+    <input type="button" onclick="location.href='/memo/<%= @id %>/edit'" value="編集">
+  </div>
+  <div>
+    <form action="../memo/<%= @id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="削除">
+    </form>
+  </div>
+  <div>
+    <input type="button" onclick="history.back()" value="戻る">
+  </div>
 </body>
 </html>

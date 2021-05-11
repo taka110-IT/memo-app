@@ -5,6 +5,16 @@
   <title>top</title>
 </head>
 <body>
-  <h1>top</h1>
+  <h1>メモアプリ</h1>
+  <div>
+    <ul>
+      <% @hash["memos"].each do |memo| %>
+        <li><a href="/memo/<%= memo["id"] %>"><%= memo["title"] %></a></li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+      <input type="button" onclick="location.href='memo/new'" value="新規作成">
+  </div>
 </body>
 </html>
