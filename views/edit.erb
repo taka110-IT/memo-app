@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <mata charset="utf-8">
-  <title>Edit memo</title>
-</head>
-<body>
-  <h1>メモアプリ</h1>
+<div>
   <form action="../<%= @id %>" method="post">
     <div>
       <label for="title">タイトル</label>
@@ -20,8 +13,7 @@
       <input type="submit" value="変更">
     </div>
   </form>
-  <div>
-    <input type="button" onclick="history.back()" value="戻る">
-  </div>
-</body>
-</html>
+</div>
+<div>
+  <input type="button" onclick="history.back()" value="戻る">
+</div>
