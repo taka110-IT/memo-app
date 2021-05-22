@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'sinatra'
 require 'sinatra/reloader'
 require 'json'
@@ -30,7 +32,7 @@ get '/memo' do # top画面呼び出し
     erb :top
   else # memos.jsonが存在しない時は強制的に新規投稿画面に行く
     File.open('memos.json', 'w') do |file|
-      @hash = { "memos": []}
+      @hash = { 'memos': [] }
       JSON.dump(@hash, file)
     end
     @page_title = 'new'
@@ -41,9 +43,9 @@ end
 post '/memo' do # 新規メモ保存
   @title = h(params[:title]) # メモのタイトルと内容を取得
   @body = h(params[:body])
-  new_memo = { "id": SecureRandom.uuid, "title": @title, "body": @body } # メモ内容をハッシュに入れる
+  new_memo = { 'id': SecureRandom.uuid, 'title': @title, 'body': @body } # メモ内容をハッシュに入れる
   @hash = Memo.load_memo('memos.json')
-  @hash["memos"].push(new_memo)
+  @hash['memos'].push(new_memo)
   Memo.save_memo('memos.json', @hash)
   redirect '/memo'
 end
@@ -55,18 +57,18 @@ end
 
 get '/memo/:id' do # show画面表示
   @hash = Memo.load_memo('memos.json')
-  item = @hash["memos"].select{ |memo| memo["id"] == params['id'] } # idで特定する
-  @id = item[0]["id"] # 特定したメモ内容を代入
-  @title = item[0]["title"]
-  @body = item[0]["body"]
+  item = @hash['memos'].select { |memo| memo['id'] == params['id'] } # idで特定する
+  @id = item[0]['id'] # 特定したメモ内容を代入
+  @title = item[0]['title']
+  @body = item[0]['body']
   @page_title = 'show'
   erb :show
 end
 
 delete '/memo/:id' do # メモ削除
   @hash = Memo.load_memo('memos.json')
-  item = @hash["memos"].select{ |memo| memo["id"] == params['id'] } # idで特定する
-  @hash["memos"].delete(item[0]) # 配列から削除
+  item = @hash['memos'].select { |memo| memo['id'] == params['id'] } # idで特定する
+  @hash['memos'].delete(item[0]) # 配列から削除
   Memo.save_memo('memos.json', @hash)
   redirect '/memo'
 end
@@ -74,21 +76,21 @@ end
 patch '/memo/:id' do # メモ修正
   @title = h(params[:title]) # メモのタイトルと内容を取得
   @body = h(params[:body])
-  edit_memo = { "id": params[:id], "title": @title, "body": @body } # 修正したメモ内容をハッシュに入れる
+  edit_memo = { 'id': params[:id], 'title': @title, 'body': @body } # 修正したメモ内容をハッシュに入れる
   @hash = Memo.load_memo('memos.json')
-  item = @hash["memos"].select{ |memo| memo["id"] == params['id'] } # idで特定する
-  @hash["memos"].delete(item[0]) # 配列から削除
-  @hash["memos"].push(edit_memo) # 修正したメモ内容を代入
+  item = @hash['memos'].select { |memo| memo['id'] == params['id'] } # idで特定する
+  @hash['memos'].delete(item[0]) # 配列から削除
+  @hash['memos'].push(edit_memo) # 修正したメモ内容を代入
   Memo.save_memo('memos.json', @hash)
   redirect '/memo'
 end
 
 get '/memo/:id/edit' do # edit画面表示
   @hash = Memo.load_memo('memos.json')
-  item = @hash["memos"].select{ |memo| memo["id"] == params['id'] } # idで特定する
-  @id = item[0]["id"] # 特定したメモ内容を代入
-  @title = item[0]["title"]
-  @body = item[0]["body"]
+  item = @hash['memos'].select { |memo| memo['id'] == params['id'] } # idで特定する
+  @id = item[0]['id'] # 特定したメモ内容を代入
+  @title = item[0]['title']
+  @body = item[0]['body']
   @page_title = 'edit'
   erb :edit
 end
