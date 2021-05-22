@@ -14,7 +14,7 @@ end
 class Memo
   def self.load_memo(filename)
     File.open(filename) do |file|
-      JSON.load(file)
+      JSON.parse(file.read)
     end
   end
 
