@@ -3,6 +3,12 @@ require 'sinatra/reloader'
 require 'json'
 require 'securerandom'
 
+helpers do # XSS対策→postとpatchでHTMLをエスケープする
+  def h(text)
+    Rack::Utils.escape_html(text)
+  end
+end
+
 class Memo
   def self.load_memo(filename)
     File.open(filename) do |file|
@@ -33,8 +39,8 @@ get '/memo' do # top画面呼び出し
 end
 
 post '/memo' do # 新規メモ保存
-  @title = params[:title] # メモのタイトルと内容を取得
-  @body = params[:body]
+  @title = h(params[:title]) # メモのタイトルと内容を取得
+  @body = h(params[:body])
   new_memo = { "id": SecureRandom.uuid, "title": @title, "body": @body } # メモ内容をハッシュに入れる
   @hash = Memo.load_memo('memos.json')
   @hash["memos"].push(new_memo)
@@ -66,8 +72,8 @@ delete '/memo/:id' do # メモ削除
 end
 
 patch '/memo/:id' do # メモ修正
-  @title = params[:title] # メモのタイトルと内容を取得
-  @body = params[:body]
+  @title = h(params[:title]) # メモのタイトルと内容を取得
+  @body = h(params[:body])
   edit_memo = { "id": params[:id], "title": @title, "body": @body } # 修正したメモ内容をハッシュに入れる
   @hash = Memo.load_memo('memos.json')
   item = @hash["memos"].select{ |memo| memo["id"] == params['id'] } # idで特定する
