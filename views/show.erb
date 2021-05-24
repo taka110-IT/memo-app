@@ -1,20 +1,16 @@
 <div>
-  タイトル<br>
-  <%= @title %>
+  <p>【タイトル】</p>
+  <p><%= @title %></p>
 </div>
 <div>
-  内容<br>
-  <%= @body %>
-</div>
-<div>
-  <input type="button" onclick="location.href='/memo/<%= @id %>/edit'" value="編集">
+  <p>【内容】</p>
+  <p><%= @body %></p>
 </div>
 <div>
   <form action="../memo/<%= @id %>" method="post">
+    <input  class="button" type="button" onclick="location.href='/memo/<%= @id %>/edit'" value="編集">
     <input type="hidden" name="_method" value="delete">
-    <input type="submit" value="削除">
+    <input class="button" type="submit" value="削除">
+    <input  class="button" type="button" onclick="history.back()" value="戻る">
   </form>
-</div>
-<div>
-  <input type="button" onclick="history.back()" value="戻る">
 </div>
