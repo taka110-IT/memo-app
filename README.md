@@ -12,7 +12,6 @@ Sinatraで作成した簡単なメモアプリです。Bundlerを使用してい
 
 <img width="618" alt="edit" src="https://user-images.githubusercontent.com/70277776/119724652-f68b3200-bea9-11eb-8795-33b01edd55b0.png">
 
-
 ## Features
 
 - メモ一覧の表示、詳細表示、編集、削除ができます。
