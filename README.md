@@ -27,19 +27,12 @@ Sinatraで作成した簡単なメモアプリです。Bundlerを使用してい
 ## Installation
 
 1. インストールするディレクトリに`https://github.com/taka110-IT/memo-app`からcloneする。
-2. `bundle init`を実行しGemfileを作成する。
-3. Gemfileに`sinatra`を記載する。
+2. `bundle install`を実行しGemをインストールする。
 
 ```
 $ git clone https://github.com/taka110-IT/memo-app <インストールするディレクトリ>
 
-$ bundle init
-```
-
-```
-# Gemfile
-
-gem 'sinatra'
+$ bundle install
 ```
 
 ## Usage
