@@ -30,11 +30,8 @@ get '/memo' do # top画面呼び出し
     @hash = Memo.load_memo('memos.json')
     @page_title = 'top'
     erb :top
-  else # memos.jsonが存在しない時は強制的に新規投稿画面に行く
-    File.open('memos.json', 'w') do |file|
-      @hash = { 'memos': [] }
-      JSON.dump(@hash, file)
-    end
+  else # memos.jsonが存在しない時はmemos.jsonを作成して強制的に新規投稿画面に行く
+    Memo.save_memo('memos.json', { 'memos': [] })
     @page_title = 'new'
     erb :new
   end
