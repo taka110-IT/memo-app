@@ -7,8 +7,8 @@
   <p><%= @body %></p>
 </div>
 <div>
-  <form action="../memo/<%= @id %>" method="post">
-    <input  class="button" type="button" onclick="location.href='/memo/<%= @id %>/edit'" value="編集">
+  <form action="/memo/<%= @id %>" method="post">
+    <a href="/memo/<%= @id %>/edit" class="button edit">編集</a>
     <input type="hidden" name="_method" value="delete">
     <input class="button" type="submit" value="削除">
     <a href="/memo" class="button back">戻る</a>

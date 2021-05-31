@@ -48,7 +48,7 @@ ul li {
   border-bottom: none;/*線を消す*/
 }
 
-.back {
+.back, .edit {
   padding: 13.5px 15px;
 }
 
