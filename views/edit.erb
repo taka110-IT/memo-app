@@ -1,0 +1,17 @@
+<div>
+  <form action="/memo/<%= @id %>" method="post">
+    <div>
+      <label for="title">【タイトル】</label>
+      <input class="title" type="text" id="title" name="title" value="<%= @title %>" required>
+    </div>
+    <div>
+      <label for="body">【内容】</label>
+      <textarea class="body" id="body" name="body" cols="30" rows="10"><%= @body %></textarea>
+    </div>
+    <div>
+      <input type="hidden" name="_method" value="patch">
+      <input  class="button" type="submit" value="変更">
+      <a href="javascript:history.back()" class="button back">戻る</a>
+    </div>
+  </form>
+</div>

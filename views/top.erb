@@ -1,0 +1,10 @@
+<div>
+  <ul>
+    <% @hash["memos"].each do |memo| %>
+      <li><a href="/memo/<%= memo["id"] %>"><%= memo["title"] %></a></li>
+    <% end %>
+  </ul>
+</div>
+<div>
+  <a href="memo/new" class="button">新規作成</a>
+</div>

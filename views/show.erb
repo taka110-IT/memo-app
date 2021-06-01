@@ -1,0 +1,16 @@
+<div>
+  <p>【タイトル】</p>
+  <p><%= @title %></p>
+</div>
+<div>
+  <p>【内容】</p>
+  <p><%= @body %></p>
+</div>
+<div>
+  <form action="/memo/<%= @id %>" method="post">
+    <a href="/memo/<%= @id %>/edit" class="button edit">編集</a>
+    <input type="hidden" name="_method" value="delete">
+    <input class="button" type="submit" value="削除">
+    <a href="/memo" class="button back">戻る</a>
+  </form>
+</div>

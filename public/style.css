@@ -1,0 +1,73 @@
+h1 {
+  font-size: 30px;
+  padding: 0.4em 0.5em;/*文字の上下 左右の余白*/
+  color: #494949;/*文字色*/
+  background: #f4f4f4;/*背景色*/
+  border-left: solid 5px #7db4e6;/*左線*/
+  border-bottom: solid 3px #d7d7d7;/*下線*/
+  margin: 15px;
+}
+
+ul {
+  padding: 0;
+  margin: 15px;
+}
+
+ul li {
+  color: #404040;
+  border-left: solid 6px #1fa67a;/*左側の線*/
+  border-bottom: solid 2px #dadada;/*下に灰色線*/
+  background: whitesmoke;
+  margin-bottom: 5px;/*下のバーとの余白*/
+  line-height: 1.5;
+  padding: 0.5em;
+  list-style-type: none!important;/*ポチ消す*/
+  font-weight: bold;
+}
+
+.button {
+  font-size: 14px;
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  background: #f8e8c5;/*ボタン色*/
+  color: #494949;
+  border-top: solid 1px #627295;
+  border-left: solid 1px #627295;
+  border-right: solid 1px #627295;
+  border-bottom: solid 2px #627295;
+  border-radius: 3px;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.button:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  border-bottom: none;/*線を消す*/
+}
+
+.back, .edit {
+  padding: 13.5px 15px;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.title, .body {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+p {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+input {
+  vertical-align: baseline;
+}
