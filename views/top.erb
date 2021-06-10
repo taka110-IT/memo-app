@@ -1,5 +1,4 @@
 <div>
-<%= @hash %>
   <ul>
     <% @hash["memos"].each do |memo| %>
       <li><a href="/memo/<%= memo[:id] %>"><%= memo[:title] %></a></li>
