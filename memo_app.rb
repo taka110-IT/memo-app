@@ -12,7 +12,7 @@ end
 
 conn = PG.connect( dbname: 'dbmemo' )
 
-def self.load_memo(conn)
+def load_memo(conn)
   @hash = {}
   @hash['memos'] = []
   conn.exec( "SELECT * FROM memos" ) do |result|
@@ -32,7 +32,10 @@ end
 post '/memo' do # 新規メモ保存
   @title = h(params[:title]) # メモのタイトルと内容を取得
   @body = h(params[:body])
-  conn.exec( "INSERT INTO memos (title, body) VALUES ('#{@title}','#{@body}')" )
+  conn.prepare("find", "INSERT INTO memos (title, body) VALUES ($1,$2)")
+  post_memo = conn.exec_prepared("find", [@title, @body])
+  conn.exec('DEALLOCATE find')
+  post_memo
   redirect '/memo'
 end
 
@@ -52,14 +55,20 @@ get '/memo/:id' do # show画面表示
 end
 
 delete '/memo/:id' do # メモ削除
-  conn.exec( "DELETE FROM memos WHERE id=#{params['id']}" )
+  conn.prepare("find", "DELETE FROM memos WHERE id=$1")
+  delete_memo = conn.exec_prepared("find", [params['id']])
+  conn.exec('DEALLOCATE find')
+  delete_memo
   redirect '/memo'
 end
 
 patch '/memo/:id' do # メモ修正
   @title = h(params[:title]) # メモのタイトルと内容を取得
   @body = h(params[:body])
-  conn.exec( "UPDATE memos SET title='#{@title}', body='#{@body}' WHERE id=#{params['id']}" )
+  conn.prepare("find", "UPDATE memos SET title=$2, body=$3 WHERE id=$1")
+  update_memo = conn.exec_prepared("find", [params['id'], @title, @body])
+  conn.exec('DEALLOCATE find')
+  update_memo
   redirect '/memo'
 end
 
