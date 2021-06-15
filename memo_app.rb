@@ -23,13 +23,15 @@ def load_memos(conn)
 end
 
 def load_one_memo(conn, memo_id)
-  conn.exec("SELECT * FROM memos WHERE id=#{memo_id}") do |result|
+  conn.prepare('load', 'SELECT * FROM memos WHERE id=$1')
+  conn.exec_prepared('load', [memo_id]) do |result|
     result.each do |row|
       @id = row['id']
       @title = row['title']
       @body = row['body']
     end
   end
+  conn.exec('DEALLOCATE load')
 end
 
 get '/memo' do # top画面呼び出し
