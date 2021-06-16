@@ -1,6 +1,8 @@
-# メモアプリ
+# データベース版メモアプリ
 
 Sinatraで作成した簡単なメモアプリです。Bundlerを使用しています。
+
+PostgrSQLを使用しメモを保存します。
 
 ## DEMO
 
@@ -16,13 +18,15 @@ Sinatraで作成した簡単なメモアプリです。Bundlerを使用してい
 ## Features
 
 - メモ一覧の表示、詳細表示、編集、削除ができます。
-- 初回起動時に実行ファイルと同階層に`memos.json`を作成し、メモ内容が記録されます。
+- PostgreSQLにメモを保存します。
 
 ## Requirement
 
 * ruby 2.7.2
+* PostgreSQL 13.2
 * Bundler 2.1.4
 * sinatra 2.1.0
+* pg 1.2.3
 
 ## Installation
 
@@ -35,6 +39,26 @@ $ git clone https://github.com/taka110-IT/memo-app <インストールするデ�
 $ bundle install
 ```
 
+3. インストールしたディレクトリに移動する
+4. PostgreSQLにログインし、メモアプリ用データベース`dbmemo`とテーブル`memos`を作成する。以下の通り入力する。
+
+```
+$ psql -U <username>
+
+データベース作成
+# create database dbmemo
+
+データベースに接続
+# \c dbmemo
+
+テーブル作成
+dbmemo=# CREATE TABLE memos (
+  id SERIAL PRIMARY KEY,
+  title TEXT NOT NULL,
+  body TEXT
+);
+```
+
 ## Usage
 
 1. ターミナルでインストールしたディレクトリに移動し`bundle exec ruby memo_app.rb`を実行する。
@@ -42,7 +66,13 @@ $ bundle install
 
 ## Note
 
-- 初回起動時は新規投稿画面を表示します。
+- PostgreSQLのサーバーを起動してください
+
+```
+ex)
+$ pg_ctl -D /usr/local/var/postgres start
+```
+
 - タイトルの入力は必須です。
 
 ## Author
